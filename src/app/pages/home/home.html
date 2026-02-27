@@ -1,0 +1,90 @@
+<div class="hero min-h-[60vh] bg-base-200 rounded-b-[3rem] shadow-inner">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <div class="badge badge-outline badge-primary mb-4 p-4 gap-2">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+        </span>
+        Nueva versión 2026
+      </div>
+      <h1 class="text-5xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        Domina tus Finanzas
+      </h1>
+      <p class="py-6 text-lg opacity-70">
+        WalletSync automatiza la gestión de tus movimientos bancarios de Santander. Sincroniza, categoriza y analiza tus gastos sin esfuerzo.
+      </p>
+      <div class="flex gap-4 justify-center">
+        <button routerLink="/payments" class="btn btn-primary shadow-lg shadow-primary/30">Empezar ahora</button>
+        <button routerLink="/categories" class="btn btn-outline">Configurar Reglas</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto px-6 -mt-12">
+  <div class="stats shadow-xl w-full bg-base-100 border border-base-300">
+    <div class="stat">
+      <div class="stat-figure text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+      <div class="stat-title">Movimientos Procesados</div>
+      <div class="stat-value text-primary">{{stats.totalMovements}}</div>
+      <div class="stat-desc">Jan 1st - Feb 27th</div>
+    </div>
+    
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+      </div>
+      <div class="stat-title">Categorías Activas</div>
+      <div class="stat-value text-secondary">{{stats.categories}}</div>
+      <div class="stat-desc">↗︎ 2 nuevas este mes</div>
+    </div>
+    
+    <div class="stat">
+      <div class="stat-figure text-accent">
+        <div class="avatar online">
+          <div class="w-16 rounded-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          </div>
+        </div>
+      </div>
+      <div class="stat-value">98%</div>
+      <div class="stat-title">Auto-Categorizado</div>
+      <div class="stat-desc text-accent">Sincronización: OK</div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pb-12">
+    <div class="card bg-base-100 shadow-sm hover:shadow-xl transition-all border border-base-300">
+      <div class="card-body items-center text-center">
+        <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2" /></svg>
+        </div>
+        <h2 class="card-title">Análisis Inteligente</h2>
+        <p class="text-sm opacity-60">Visualiza tus gastos agrupados automáticamente por categorías personalizadas.</p>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm hover:shadow-xl transition-all border border-base-300">
+      <div class="card-body items-center text-center">
+        <div class="w-12 h-12 bg-secondary/10 text-secondary rounded-xl flex items-center justify-center mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+        </div>
+        <h2 class="card-title">Reglas de Asociación</h2>
+        <p class="text-sm opacity-60">Crea reglas potentes basadas en palabras clave para que ningún movimiento se quede sin categoría.</p>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm hover:shadow-xl transition-all border border-base-300">
+      <div class="card-body items-center text-center">
+        <div class="w-12 h-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+        </div>
+        <h2 class="card-title">Seguridad Local</h2>
+        <p class="text-sm opacity-60">Tus datos bancarios se procesan con total privacidad y seguridad en tu propia instancia de WalletSync.</p>
+      </div>
+    </div>
+  </div>
+</div>

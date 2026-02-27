@@ -1,0 +1,65 @@
+<div class="container mx-auto p-4 max-w-5xl">
+  <h2 class="text-3xl font-bold mb-6 text-base-content">Movimientos Agrupados</h2>
+
+  <div *ngIf="isLoading$ | async" class="flex justify-center my-10">
+    <span class="loading loading-spinner loading-lg text-primary"></span>
+  </div>
+
+  <div *ngIf="!(isLoading$ | async) && associatedPayments.length === 0" class="alert alert-info shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>No se encontraron movimientos categorizados.</span>
+  </div>
+
+  <div *ngIf="!(isLoading$ | async) && associatedPayments.length > 0">
+    
+    <div *ngFor="let item of associatedPayments" class="collapse collapse-arrow bg-base-200 mb-4 border border-base-300 shadow-sm rounded-box">
+      <input type="checkbox" /> 
+      
+      <div class="collapse-title text-xl font-medium flex flex-wrap justify-between items-center gap-4">
+        
+        <div class="flex items-center gap-3">
+          <span class="capitalize">{{ item.category.categoryName }}</span>
+          
+          <div class="badge badge-sm uppercase" 
+               [ngClass]="{'badge-success text-success-content': item.category.categoryType === 'INCOME', 'badge-error text-error-content': item.category.categoryType === 'EXPENSE'}">
+            {{ item.category.categoryType === 'INCOME' ? 'Ingreso' : 'Gasto' }}
+          </div>
+        </div>
+
+        <div class="font-bold text-lg" 
+             [ngClass]="{'text-success': getCategoryTotal(item.movements) > 0, 'text-error': getCategoryTotal(item.movements) < 0}">
+          {{ getCategoryTotal(item.movements) | currency:'EUR' }}
+        </div>
+      </div>
+
+      <div class="collapse-content bg-base-100">
+        <div class="overflow-x-auto mt-2 rounded-lg border border-base-200">
+          <table class="table table-zebra w-full table-sm md:table-md">
+            <thead class="bg-base-300 text-base-content">
+              <tr>
+                <th>Fecha</th>
+                <th>Concepto</th>
+                <th class="text-right">Importe</th>
+                <th class="text-right hidden sm:table-cell">Saldo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let mov of item.movements" class="hover">
+                <td class="whitespace-nowrap">{{ mov.operationDate | date:'dd/MM/yyyy' }}</td>
+                <td class="text-sm">{{ mov.operationLabel }}</td>
+                <td class="text-right font-semibold whitespace-nowrap" 
+                    [ngClass]="{'text-success': mov.amount > 0, 'text-error': mov.amount < 0}">
+                  {{ mov.amount | currency:'EUR' }}
+                </td>
+                <td class="text-right text-base-content/70 hidden sm:table-cell whitespace-nowrap">
+                  {{ mov.balance | currency:'EUR' }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

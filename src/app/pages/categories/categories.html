@@ -1,0 +1,118 @@
+
+<div class="p-6 space-y-8">
+  <div class="flex flex-wrap gap-4 justify-between items-center">
+    <h1 class="text-3xl font-bold">Configuración de WalletSync</h1>
+    <div class="flex gap-2">
+      <label for="modal-category" class="btn btn-primary btn-sm">Nueva Categoría</label>
+      <label for="modal-association" class="btn btn-secondary btn-sm">Nueva Asociación</label>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-8">
+    
+    <div class="card bg-base-100 shadow-xl border border-base-300">
+      <div class="card-body">
+        <h2 class="card-title text-primary">Categorías Existentes</h2>
+        <div class="overflow-x-auto">
+          <table class="table table-zebra w-full">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th class="text-right">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cat of categories$ | async as categories">
+                <td class="font-medium">{{ cat.categoryName }}</td>
+                <td>
+                  <span class="badge badge-sm" [ngClass]="cat.categoryType === 'INCOME' ? 'badge-success' : 'badge-error'">
+                    {{ cat.categoryType }}
+                  </span>
+                </td>
+                <td class="text-right">
+                  <button (click)="deleteCategory(cat.id)" class="btn btn-ghost btn-xs text-error">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-xl border border-base-300">
+      <div class="card-body">
+        <h2 class="card-title text-secondary">Reglas de Asociación</h2>
+        <div class="overflow-x-auto">
+          <table class="table table-zebra w-full">
+            <thead>
+              <tr>
+                <th>Palabra Clave</th>
+                <th>Asignada a</th>
+                <th class="text-right">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let assoc of associations$ | async">
+                <td class="italic">"{{ assoc.associationWord }}"</td>
+                <td><span class="badge badge-outline">{{ assoc.categoryName }}</span></td>
+                <td class="text-right">
+                  <button (click)="deleteAssociation(assoc.id)" class="btn btn-ghost btn-xs text-error">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="checkbox" id="modal-category" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Añadir Nueva Categoría</h3>
+    <div class="py-4 space-y-4">
+      <div class="form-control">
+        <label class="label"><span class="label-text">Nombre de Categoría</span></label>
+        <input type="text" [(ngModel)]="newCategory.categoryName" placeholder="Ej: Restaurantes" class="input input-bordered w-full" />
+      </div>
+      <div class="form-control">
+        <label class="label"><span class="label-text">Tipo</span></label>
+        <select class="select select-bordered" [(ngModel)]="newCategory.categoryType">
+          <option value="EXPENSE">Gasto</option>
+          <option value="INCOME">Ingreso</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-action">
+      <label for="modal-category" class="btn">Cancelar</label>
+      <button (click)="saveCategory()" class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<input type="checkbox" id="modal-association" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg text-secondary">Añadir Regla de Asociación</h3>
+    <p class="text-sm opacity-70">Cuando un movimiento contenga esta palabra, se categorizará automáticamente.</p>
+    <div class="py-4 space-y-4">
+      <div class="form-control">
+        <label class="label"><span class="label-text">Palabra/Comercio</span></label>
+        <input type="text" [(ngModel)]="newAssociation.associationWord" placeholder="Ej: Netflix" class="input input-bordered w-full" />
+      </div>
+      <div class="form-control">
+        <label class="label"><span class="label-text">Vincular a Categoría</span></label>
+        <select class="select select-bordered" [(ngModel)]="newAssociation.categoryId">
+          <option [value]="0" disabled selected>Selecciona una categoría</option>
+          <option *ngFor="let cat of categories$ | async" [value]="cat.id">{{ cat.categoryName }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-action">
+      <label for="modal-association" class="btn">Cancelar</label>
+      <button (click)="saveAssociation()" class="btn btn-secondary">Crear Regla</button>
+    </div>
+  </div>
+</div>

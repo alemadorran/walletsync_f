@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AssociatedSantanderPaymentDTO } from '../interfaces/AssociatedSantanderPaymentDTO';
 import { SantanderPaymentMovementDTO } from '../interfaces/SantanderPaymentMovementDTO';
+import { AssociatedSantanderPaymentByYearDTO } from '../interfaces/AssociatedSantanderPaymentByYearDTO';
 
 @Injectable({ providedIn: 'root' })
 export class SantanderService {
@@ -14,6 +15,10 @@ export class SantanderService {
   // GET /api/payments/santander/inCategories
   getMovementsWithCategories(): Observable<AssociatedSantanderPaymentDTO[]> {
     return this.http.get<AssociatedSantanderPaymentDTO[]>(`${this.apiUrl}/inCategories`);
+  }
+
+  getAllMovementsWithCategoriesByYear(year: number): Observable<AssociatedSantanderPaymentByYearDTO> {
+    return this.http.get<AssociatedSantanderPaymentByYearDTO>(`${this.apiUrl}/inCategoriesByYear/${year}`);
   }
 
   // GET /api/payments/santander

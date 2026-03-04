@@ -1,16 +1,13 @@
 <div class="container mx-auto p-4 max-w-5xl">
   <h2 class="text-3xl font-bold mb-6 text-base-content">Movimientos Agrupados</h2>
 
-  <div *ngIf="isLoading$ | async" class="flex justify-center my-10">
-    <span class="loading loading-spinner loading-lg text-primary"></span>
-  </div>
 
-  <div *ngIf="!(isLoading$ | async) && associatedPayments.length === 0" class="alert alert-info shadow-lg">
+  <div *ngIf="associatedPayments.length === 0" class="alert alert-info shadow-lg">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
     <span>No se encontraron movimientos categorizados.</span>
   </div>
 
-  <div *ngIf="!(isLoading$ | async) && associatedPayments.length > 0">
+  <div *ngIf="associatedPayments.length > 0">
     
     <div *ngFor="let item of associatedPayments" class="collapse collapse-arrow bg-base-200 mb-4 border border-base-300 shadow-sm rounded-box">
       <input type="checkbox" /> 

@@ -9,6 +9,8 @@ import { PaymentListComponent } from './components/payment-list-component/paymen
 import { NavbarComponent } from './shared/navbar/navbar';
 import { Categories } from './pages/categories/categories';
 import { FormsModule } from '@angular/forms'; 
+import { MonthNamePipePipe } from './pipes/month-name-pipe-pipe';
+import { PdfUploadComponent } from './components/pdf-upload-component/pdf-upload-component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     Dashboard,
     PaymentListComponent,
     NavbarComponent,
-    Categories
+    Categories,
+    MonthNamePipePipe,
+    PdfUploadComponent
   ],
   imports: [
     BrowserModule,

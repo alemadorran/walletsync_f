@@ -19,14 +19,18 @@
             <div class="collapse-content bg-base-100">
 
                 <div *ngFor="let monthData of associatedPaymentsByYear?.associatedSantanderPaymentByMonthDTOS"
-                    class="collapse collapse-arrow bg-base-200 mb-4 border border-base-300 shadow-sm rounded-box">
-
+                    class="collapse collapse-arrow bg-base-200 mb-4 mt-4 border border-base-300 shadow-sm rounded-box">
+                    <input type="checkbox" />
 
                     <div class="collapse-title text-xl font-medium flex flex-wrap justify-between items-center gap-4">
 
                         <div class="flex items-center gap-3">
-                            <span class="capitalize">Mes {{ monthData.month }}</span>
+                            <span class="capitalize">{{ monthData.month | monthNamePipe }}</span>
                         </div>
+                    </div>
+
+                    <div class="collapse-content bg-base-100">  
+                        <app-payment-list-component [associatedPayments]="monthData.associatedSantanderPaymentDTOS" ></app-payment-list-component>
                     </div>
 
                 </div>
@@ -37,6 +41,7 @@
 
 
 
+    <app-pdf-upload-component> </app-pdf-upload-component>
 
     <div class="flex flex-col items-center mt-10">
         <span class="text-3xl font-bold mb-6 text-base-content">Gestionar Categorías</span>

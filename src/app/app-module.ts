@@ -1,5 +1,6 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
@@ -11,6 +12,8 @@ import { Categories } from './pages/categories/categories';
 import { FormsModule } from '@angular/forms'; 
 import { MonthNamePipePipe } from './pipes/month-name-pipe-pipe';
 import { PdfUploadComponent } from './components/pdf-upload-component/pdf-upload-component';
+import { Details } from './pages/details/details/details';
+import { Piechart } from './components/piechart/piechart';
 
 @NgModule({
   declarations: [
@@ -21,15 +24,19 @@ import { PdfUploadComponent } from './components/pdf-upload-component/pdf-upload
     NavbarComponent,
     Categories,
     MonthNamePipePipe,
-    PdfUploadComponent
+    PdfUploadComponent,
+    Details,
+    Piechart
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BaseChartDirective
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [App]
 })

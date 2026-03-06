@@ -1,45 +1,14 @@
-<div class="p-6">
+<div class="flex flex-col items-center gap-12 mt-12">
 
-    <div *ngIf="isLoading$ | async">
-        <p>Cargando movimientos de Santander...</p>
-    </div>
-
-
-    <div class="container mx-auto p-4 max-w-5xl">
-        <div class="collapse collapse-arrow bg-base-200 mb-4 border border-base-300 shadow-sm rounded-box">
-            <input type="checkbox" />
-
-            <div class="collapse-title text-xl font-medium flex flex-wrap justify-between items-center gap-4">
-
-                <div class="flex items-center gap-3">
-                    <span class="capitalize">{{ year }}</span>
-                </div>
-            </div>
-
-            <div class="collapse-content bg-base-100">
-
-                <div *ngFor="let monthData of associatedPaymentsByYear?.associatedSantanderPaymentByMonthDTOS"
-                    class="collapse collapse-arrow bg-base-200 mb-4 mt-4 border border-base-300 shadow-sm rounded-box">
-                    <input type="checkbox" />
-
-                    <div class="collapse-title text-xl font-medium flex flex-wrap justify-between items-center gap-4">
-
-                        <div class="flex items-center gap-3">
-                            <span class="capitalize">{{ monthData.month | monthNamePipe }}</span>
-                        </div>
-                    </div>
-
-                    <div class="collapse-content bg-base-100">  
-                        <app-payment-list-component [associatedPayments]="monthData.associatedSantanderPaymentDTOS" ></app-payment-list-component>
-                    </div>
-
-                </div>
-
+    <div class="card bg-base-100 w-96 shadow-sm cursor-pointer hover:shadow-lg transition-shadow">
+        <div class="card-body items-center text-center">
+            <h2 class="card-title">Detalles Bancarios</h2>
+            <p>Visualiza tus detalles bancarios por años</p>
+            <div class="card-actions">
+                <button class="btn btn-primary" routerLink="/details">Ver Detalles</button>
             </div>
         </div>
     </div>
-
-
 
     <app-pdf-upload-component> </app-pdf-upload-component>
 

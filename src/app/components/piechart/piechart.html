@@ -1,0 +1,25 @@
+<div class="p-2 bg-base-200">
+
+  <div class="grid grid-cols-1 gap-6">
+
+    <div class="lg:col-span-2 card bg-base-100 shadow-xl border border-base-300">
+      <div class="card-body">
+        <h2 class="card-title font-bold">Distribución de Gastos</h2>
+        <div class="divider my-0"></div>
+        <div>
+
+          <div class="relative h-[350px] w-full pt-4" *ngIf="pieChartData$ | async as chartData">
+            <canvas baseChart [data]="chartData" [type]="pieChartType" [options]="pieChartOptions">
+            </canvas>
+          </div>
+
+          <div *ngIf="!(pieChartData$ | async)" class="flex justify-center items-center h-[350px]">
+            <span class="loading loading-spinner loading-lg text-primary"></span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
